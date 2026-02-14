@@ -3,6 +3,7 @@ from loguru import logger
 from typing import Annotated
 
 from fastapi import APIRouter, File, UploadFile, Form, HTTPException
+from starlette.responses import Response
 
 from fileupload_service.dependencies import FileStorageDep
 from fileupload_service.schemas import StoredFile, StoredFileInfo
@@ -63,17 +64,20 @@ async def list_files(file_storage: FileStorageDep) -> list[StoredFileInfo]:
 
 
 @router.get("")
-async def get_file(
-    file_storage: FileStorageDep, file_id: str | None = None, file_hash: str | None = None
-) -> StoredFile:
+async def get_file(file_storage: FileStorageDep, file_id: str | None = None, file_hash: str | None = None) -> Response:
     if (file_id is None and file_hash is None) or (file_id is not None and file_hash is not None):
         raise HTTPException(status_code=400, detail="Must provide one of file_id or file_hash")
 
     if file_id is not None:
-        return file_storage.get_file_by_id(file_id)
+        stored_file = file_storage.get_file_by_id(file_id)
+    else:
+        stored_file = file_storage.get_file_by_hash(file_hash)
 
-    if file_hash is not None:
-        return file_storage.get_file_by_hash(file_hash)
+    return Response(
+        content=stored_file.content,
+        media_type="application/octet-stream",
+        headers={"Content-Disposition": f'attachment; filename="{stored_file.info.id}"'},
+    )
 
 
 @router.delete("")
