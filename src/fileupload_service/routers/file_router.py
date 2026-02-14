@@ -5,7 +5,7 @@ from typing import Annotated
 from fastapi import APIRouter, File, UploadFile, Form, HTTPException
 from starlette.responses import Response
 
-from fileupload_service.dependencies import FileStorageDep
+from fileupload_service.file_storage import FileStorageDep
 from fileupload_service.schemas import StoredFile, StoredFileInfo
 
 router = APIRouter()
