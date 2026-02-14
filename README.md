@@ -2,7 +2,7 @@
 
 # How to use (using [justfile](https://github.com/casey/just?tab=readme-ov-file#cross-platform)):
  - `just dev` -> this starts the api locally
- - `just docker-up` -> starts the api in docker, locally, access using localhost:8000
+ - `just docker-up` -> starts the api in docker, locally, access using localhost:3000
  - `just docker-down` -> stops the docker container & removes it
  - 'just test' -> runs tests
 

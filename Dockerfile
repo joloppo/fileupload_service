@@ -9,6 +9,6 @@ RUN uv sync --no-dev --no-install-project --frozen
 COPY src ./src
 RUN uv sync --locked --no-dev
 
-EXPOSE 8000
-CMD ["uv", "run", "uvicorn", "fileupload_service.app:build_app", "--host", "0.0.0.0", "--port", "8000", "--limit-concurrency", "200", "--workers", "4"]
+EXPOSE 3000
+CMD ["uv", "run", "uvicorn", "fileupload_service.app:build_app", "--host", "0.0.0.0", "--port", "3000", "--limit-concurrency", "200", "--workers", "4"]
 
