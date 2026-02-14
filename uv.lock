@@ -204,6 +204,8 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "fastapi", extra = ["all"] },
+    { name = "python-multipart" },
+    { name = "uvicorn" },
 ]
 
 [package.dev-dependencies]
@@ -212,7 +214,11 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "fastapi", extras = ["all"], specifier = ">=0.129.0" }]
+requires-dist = [
+    { name = "fastapi", extras = ["all"], specifier = ">=0.129.0" },
+    { name = "python-multipart", specifier = ">=0.0.22" },
+    { name = "uvicorn", specifier = ">=0.40.0" },
+]
 
 [package.metadata.requires-dev]
 dev = [{ name = "pytest", specifier = ">=9.0.2" }]
