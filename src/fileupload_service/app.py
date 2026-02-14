@@ -6,7 +6,7 @@ from fileupload_service.routers import file_router
 
 def build_app() -> FastAPI:
     app = FastAPI()
-    app.include_router(file_router.router, prefix="/files", tags=["files"])
+    app.include_router(file_router.router, prefix="/v1/file", tags=["File"])
 
     @app.get("/")
     async def root():

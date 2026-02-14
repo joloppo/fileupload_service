@@ -44,8 +44,6 @@ async def upload_file(
     info = StoredFileInfo(
         id=file_id,
         hash=sha256,
-        meta_mime_type=file.content_type,
-        meta_size_bytes=current_filesize,
     )
     to_store = StoredFile(
         info=info,
